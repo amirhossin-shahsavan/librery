@@ -34,7 +34,7 @@ const peopleSchema = new Schema({
   },
   password: {
     type: String,
-    required: true,
+    
   },
   brithDate:{
     type:String
@@ -43,7 +43,10 @@ const peopleSchema = new Schema({
     type:String,
     enum:['active','inActice']  
   },
-  createdAt:Date,
+  createdAt:{
+    type:Date,
+    default:Date.now
+  },
   updatedAt:{
     type:Date,
     default:Date.now
