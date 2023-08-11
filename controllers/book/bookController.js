@@ -93,7 +93,7 @@ exports.deleteBook = (req, res) => {
   Book.findByIdAndRemove(bookId)
     .then((deletedBook) => {
       if (deletedBook) {
-        res.status(200).json({ message: "Book deleted successfully" });
+        res.status(200).json({ message: 'Book deleted successfully' })
       } else {
         res.status(404).json({ message: "Book not found" });
       }
@@ -101,9 +101,9 @@ exports.deleteBook = (req, res) => {
     .catch((err) => res.status(500).json({ error: err.message }));
 };
 
-exports.getBooks = (req, res) => {
-  Book.find()
-    .populate("category")
-    .then((books) => res.status(200).json(books))
-    .catch((err) => res.status(500).json({ error: err.message }));
-};
+// exports.getBooks = (req, res) => {
+//   Book.find()
+//     .populate("category")
+//     .then((books) => res.status(200).json(books))
+//     .catch((err) => res.status(500).json({ error: err.message }));
+// };

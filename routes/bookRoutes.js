@@ -11,6 +11,6 @@ bookRouter.get("/book/:bookId", bookController.getBook);
 
 bookRouter.put("/book/:bookId", bookController.updateBook);
 
-app.delete("/book/:bookId", bookController.deleteBook);
+bookRouter.delete("/book/:bookId", bookController.deleteBook);
 
 module.exports = bookRouter;
