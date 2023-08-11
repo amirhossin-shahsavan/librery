@@ -1,5 +1,5 @@
 # librery
-category file:
+category:
 creat directories: models,controller,Routs
 and files js: category, categoryController,categoryRoute
 install packages(express,dotenv,bodyparser)
