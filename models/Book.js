@@ -1,49 +1,45 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const bookSchema = new Schema({
   title: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
     type: String,
-    required: true
+    required: true,
   },
   releaseDate: {
     type: String,
-    required: true
+    required: true,
   },
   category: {
     type: Schema.Types.ObjectId,
-    ref: 'Category'
+    ref: "Category",
   },
   pageCount: {
     type: String,
-    required: true
+    required: true,
   },
   author: {
     type: String,
-    required: true
+    required: true,
   },
   minage: {
     type: String,
-    required: true
+    required: true,
   },
   active: {
     type: String,
-    required: true
+    required: true,
   },
-  tags: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Tag'
-  }],
   isAccepted: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 });
 
-const Book = mongoose.model('Book', bookSchema);
+const Book = mongoose.model("Book", bookSchema);
 
 module.exports = Book;
