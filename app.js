@@ -1,12 +1,24 @@
 const express = require("express");
 const dotenv  =  require("dotenv").config()
 const app = express()
-const port = process.env.PORT
+const PORT = process.env.PORT
 
 
-const MONGO_URI = "http://127.0.0.1:27017/library/"
+const MONGODB_URI = "mongodb://127.0.0.1:27017/library/"
 
 app.use(express.json())
-append.listen(PORT,()=>{
-    console.log(`run on port ${port}`);
-})
+app.use(express.urlencoded({ extended: true }));
+
+mongoose
+  .connect(MONGODB_URI)
+  .then((connection) => {
+    console.log(`connecting to mongodb ${MONGODB_URI}`);
+  })
+  .then((result) => {
+    app.listen(Port, () => {
+      console.log(`app running on ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
