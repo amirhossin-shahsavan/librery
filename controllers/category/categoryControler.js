@@ -1,95 +1,87 @@
-const Book = require("../../models/Book");
+const Category = require("../../models/Category");
 
-exports.createBook = (req, res) => {
+exports.createCategory = (req, res) => {
   const { name, icon, order, parentId, active } = req.body;
-  const book = new Book({
+  const Category = new Category({
     name,
     icon,
     order,
     parentId,
     active,
   });
-   book
+   Category
     .save()
-    .then((savedBook) => res.status(201).json(savedBook))
+    .then((savedCategory) => res.status(201).json(savedCategory))
     .catch((err) => res.status(500).json({ error: err.message }));
 };
 
-exports.getallBooks = (req, res) => {
-  Book.find()
+exports.getallCategorys = (req, res) => {
+  Category.find()
     .populate("category")
-    .then((books) => res.status(200).json(books))
+    .then((Categorys) => res.status(200).json(Categorys))
     .catch((err) => res.status(500).json({ error: err.message }));
 };
 
-exports.getBook = (req, res) => {
-  const { bookId } = req.params;
-  Book.findById(bookId)
+exports.getCategory = (req, res) => {
+  const { CategoryId } = req.params;
+  Category.findById(CategoryId)
     .populate("category")
-    .then((book) => {
-      if (book) {
-        res.status(200).json(book);
+    .then((Category) => {
+      if (Category) {
+        res.status(200).json(Category);
       } else {
-        res.status(404).json({ message: "Book not found" });
+        res.status(404).json({ message: "Category not found" });
       }
     })
     .catch((err) => res.status(500).json({ error: err.message }));
 };
 
-exports.updateBook = (req, res) => {
-  const { bookId } = req.params;
+exports.updateCategory = (req, res) => {
+  const { CategoryId } = req.params;
   const {
     name,
-    title,
-    description,
-    releaseDate,
-    categoryId,
-    pageCount,
-    author,
-    minage,
+    icon,
+    order,
+    parentId,
     active,
   } = req.body;
-  Book.findByIdAndUpdate(
-    bookId,
+  Category.findByIdAndUpdate(
+    CategoryId,
     {
       name,
-      title,
-      description,
-      releaseDate,
-      categoryId,
-      pageCount,
-      author,
-      minage,
+      icon,
+      order,
+      parentId,
       active,
     },
     { new: true }
   )
-    .then((updatedBook) => {
-      if (updatedBook) {
-        res.status(200).json(updatedBook);
+    .then((updatedCategory) => {
+      if (updatedCategory) {
+        res.status(200).json(updatedCategory);
       } else {
-        res.status(404).json({ message: "Book not found" });
+        res.status(404).json({ message: "Category not found" });
       }
     })
     .catch((err) => res.status(500).json({ error: err.message }));
 };
 
-exports.deleteBook = (req, res) => {
-  const { bookId } = req.params;
-  Book.findByIdAndRemove(bookId)
-    .then((deletedBook) => {
-      if (deletedBook) {
-        res.status(200).json({ message: 'Book deleted successfully' })
+exports.deleteCategory = (req, res) => {
+  const { CategoryId } = req.params;
+  Category.findByIdAndRemove(CategoryId)
+    .then((deletedCategory) => {
+      if (deletedCategory) {
+        res.status(200).json({ message: 'Category deleted successfully' })
       } else {
-        res.status(404).json({ message: "Book not found" });
+        res.status(404).json({ message: "Category not found" });
       }
     })
     .catch((err) => res.status(500).json({ error: err.message }));
 };
 
-// exports.getBooks = (req, res) => {
-//   Book.find()
+// exports.getCategorys = (req, res) => {
+//   Category.find()
 //     .populate("category")
-//     .then((books) => res.status(200).json(books))
+//     .then((Categorys) => res.status(200).json(Categorys))
 //     .catch((err) => res.status(500).json({ error: err.message }));
 // };
