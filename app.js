@@ -1,13 +1,17 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const dotenv  =  require("dotenv").config()
-const app = express()
+const dotenv = require("dotenv").config();
+const app = express();
 
-const MONGODB_URI = "mongodb://127.0.0.1:27017/library"
-const authRouter = require("./routes/authRouter")
-app.use(express.json())
+const MONGODB_URI = "mongodb://127.0.0.1:27017/library";
+const authRouter = require("./routes/authRouter");
+const bookRouter = require("./routes/bookRoutes");
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/api/v1",authRouter)
+app.use("/api/v1", authRouter);
+
+app.use("/api/v1/", bookRouter);
+
 mongoose
   .connect(MONGODB_URI)
   .then((connection) => {
