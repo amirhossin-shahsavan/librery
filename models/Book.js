@@ -2,17 +2,30 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const bookSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+    // unique: true,
+    minlenght: 1,
+    lowercase: true,
+  },
   title: {
     type: String,
     required: true,
+    minlenght: 1,
+    lowercase: true,
   },
   description: {
     type: String,
     required: true,
+    minlenght: 1,
+    lowercase: true,
   },
   releaseDate: {
     type: String,
     required: true,
+    minlenght: 1,
+    lowercase: true,
   },
   category: {
     type: Schema.Types.ObjectId,
@@ -21,25 +34,27 @@ const bookSchema = new Schema({
   pageCount: {
     type: String,
     required: true,
+    minlenght: 1,
+    lowercase: true,
   },
   author: {
     type: String,
     required: true,
+    minlenght: 1,
+    lowercase: true,
   },
   minage: {
     type: String,
     required: true,
+    minlenght: 1,
+    lowercase: true,
   },
   active: {
     type: String,
     required: true,
-  },
-  isAccepted: {
-    type: Boolean,
-    default: false,
+    minlenght: 1,
+    lowercase: true,
   },
 });
 
-const Book = mongoose.model("Book", bookSchema);
-
-module.exports = Book;
+module.exports = mongoose.model("Book", bookSchema);

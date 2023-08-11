@@ -1,7 +1,8 @@
-const Book = require("./../models/Book");
+const Book = require("../../models/Book");
 
 exports.createBook = (req, res) => {
   const {
+    name,
     title,
     description,
     releaseDate,
@@ -12,6 +13,7 @@ exports.createBook = (req, res) => {
     active,
   } = req.body;
   const book = new Book({
+    name,
     title,
     description,
     releaseDate,
@@ -51,6 +53,7 @@ exports.getBook = (req, res) => {
 exports.updateBook = (req, res) => {
   const { bookId } = req.params;
   const {
+    name,
     title,
     description,
     releaseDate,
@@ -63,6 +66,7 @@ exports.updateBook = (req, res) => {
   Book.findByIdAndUpdate(
     bookId,
     {
+      name,
       title,
       description,
       releaseDate,
@@ -94,5 +98,12 @@ exports.deleteBook = (req, res) => {
         res.status(404).json({ message: "Book not found" });
       }
     })
+    .catch((err) => res.status(500).json({ error: err.message }));
+};
+
+exports.getBooks = (req, res) => {
+  Book.find()
+    .populate("category")
+    .then((books) => res.status(200).json(books))
     .catch((err) => res.status(500).json({ error: err.message }));
 };

@@ -1,25 +1,56 @@
 const express = require("express");
+const mongoose = require("mongoose")
+const dotenv = require("dotenv").config();
 const app = express();
-const bookRouter = require('./routes/bookRoutes');
 
-const dotenv  =  require("dotenv").config()
-const PORT = process.env.PORT
-const MONGODB_URI = "mongodb://127.0.0.1:27017/library/"
+const MONGODB_URI = "mongodb://127.0.0.1:27017/library";
+const bookRouter = require("./routes/bookRoutes");
 
-app.use(express.json())
+
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api/v1/',bookRouter)
+app.use("/api/v1/", bookRouter);
+
 
 mongoose
   .connect(MONGODB_URI)
   .then((connection) => {
-    console.log(`connecting to mongodb ${MONGODB_URI}`);
+    console.log(`connecting to mongodb ${MONGODB_URI}>>>>>>>connection ==${connection}`);
   })
   .then((result) => {
-    app.listen(Port, () => {
-      console.log(`app running on ${PORT}`);
+    app.listen(process.env.PORT, () => {
+      console.log(`app running on ${process.env.PORT}>>>>>>>result == ${result}`);
     });
   })
   .catch((err) => {
     console.log(err);
   });
+
+
+  
+
+
+
+// const express = require("express");
+// const mongoose = require("mongoose");
+// const dotenv  =  require("dotenv").config()
+// const app = express()
+
+// const MONGODB_URI = "mongodb://127.0.0.1:27017/library"
+// const authRouter = require("./routes/authRouter")
+// app.use(express.json())
+// app.use(express.urlencoded({ extended: true }));
+// app.use("/api/v1",authRouter)
+// mongoose
+//   .connect(MONGODB_URI)
+//   .then((connection) => {
+//     console.log(connecting to mongodb ${MONGODB_URI});
+//   })
+//   .then((result) => {
+//     app.listen(process.env.PORT, () => {
+//       console.log(app running on ${process.env.PORT});
+//     });
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
