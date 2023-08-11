@@ -1,55 +1,16 @@
 const express = require("express");
 const app = express();
-const { uuid } = require('uuidv4');
+const bookController = require("../controller/bookController");
 const bookRouter = express.Router();
 
-bookRouter.get('/books', (req,res)=>{
-    try {
-        res.json({
-            statusCode : "sucess",
-            data : "get all books"
-        })
-    } catch (error) {
-        console.log(error);
-        res.json(error.message)
-    }
-} )
+bookRouter.get("/allbooks", bookController.getallBooks);
 
-bookRouter.post('/book',(req,res)=>{
-    try {
-        res.json({
-            statusCode : "sucess",
-            data : "create all books"
-        })
-    } catch (error) {
-        console.log(error);
-        res.json(error.message)
-    }  
-})
+bookRouter.get("/book", bookController.getBook);
 
+bookRouter.post("/book", bookController.createBook);
 
-bookRouter.put('/book',(req,res)=>{
-    try {
-        res.json({
-            statusCode : "sucess",
-            data : "put all books"
-        })
-    } catch (error) {
-        console.log(error);
-        res.json(error.message)
-    }  
-})
+bookRouter.put("/book", bookController.updateBook);
 
-bookRouter.delete('/book',(req,res)=>{
-    try {
-        res.json({
-            statusCode : "sucess",
-            data : "delete all books"
-        })
-    } catch (error) {
-        console.log(error);
-        res.json(error.message)
-    }  
-})
+app.delete("/book", bookController.deleteBook);
 
-module.exports = bookRouter
+module.exports = bookRouter;
