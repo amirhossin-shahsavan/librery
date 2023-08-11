@@ -12,6 +12,8 @@ exports.createBook = (req, res) => {
     minage,
     active,
   } = req.body;
+
+  console.log(req.body)
   const book = new Book({
     name,
     title,

@@ -16,42 +16,42 @@ const peopleSchema = new Schema({
     minlength: 3,
     maxlength: 255,
   },
-  family:{
-    type:String,
-    required:true,
+  family: {
+    type: String,
+    required: true,
     minlength: 3,
     maxlength: 255,
   },
-  role:{
-    type:String,
-    enum:['admin','user']  
-
+  role: {
+    type: String,
+    enum: ["admin", "user"],
   },
 
-  age:{
-    type:Number,
-    required:true,
+  age: {
+    type: Number,
+    required: true,
   },
   password: {
     type: String,
-    required: true,
   },
-  brithDate:{
-    type:String
+  brithDate: {
+    type: String,
   },
-  active:{
-    type:String,
-    enum:['active','inActice']  
+  active: {
+    type: String,
+    enum: ["active", "inActice"],
   },
-  createdAt:Date,
-  updatedAt:{
-    type:Date,
-    default:Date.now
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
-  deletedAt:{
-    type:Date
-  }
-  
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+  },
+  deletedAt: {
+    type: Date,
+  },
 });
 
 module.exports = mongoose.model("People", peopleSchema);
