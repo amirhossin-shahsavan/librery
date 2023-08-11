@@ -1,5 +1,7 @@
 const People = require("../../models/users");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
 const crypto = require("crypto");
 exports.login = (req, res) => {
   const { cellPhone, password } = req.body;
@@ -14,7 +16,11 @@ exports.login = (req, res) => {
     } else {
       bcrypt.compare(password, user.password).then((isMatch) => {
         if (isMatch) {
-          res.send("login is succsessfully");
+          const token = jwt.sign({ userId: user._id }, "gholi");
+          console.log(`>>>>> ${token}`);
+         
+          res.json({ token });
+          //res.send("login is succsessfully");
         }
       });
     }
