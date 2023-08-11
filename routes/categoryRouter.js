@@ -3,14 +3,16 @@ const app = express();
 const categoryController = require("../controllers/book/bookController");
 const categoryRouter = express.Router();
 
-categoryRouter.get("/book", bookController.getallBooks);
+categoryRouter.get("/category", categoryController.getallCategorys);
 
-categoryRouter.post("/book", bookController.createBook);
+categoryRouter.post("/category", categoryController.createCategory);
 
-categoryRouter.get("/book/:bookId", bookController.getBook);
+categoryRouter.get("/category/:categoryId", categoryController.getCategory);
 
-categoryRouter.put("/book/:bookId", bookController.updateBook);
+categoryRouter.put("/category/:categoryId", categoryController.updateCategory);
 
-categoryRouter.delete("/book/:bookId", bookController.deleteBook);
+categoryRouter.delete("/category/:categoryId", categoryController.deleteCategory);
 
 module.exports = categoryRouter;
+
+createCategory
